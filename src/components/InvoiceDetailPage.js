@@ -15,26 +15,22 @@ const InvoiceDetailPage = () => {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
+    const fetchInvoice = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get(`${API_BASE_URL}/invoices/${id}`);
+        setInvoice(response.data);
+      } catch (error) {
+        console.error("Error fetching invoice:", error);
+        setError("Failed to fetch invoice details. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchInvoice();
   }, [id]);
-
-  const fetchInvoice = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await axios.get(`${API_BASE_URL}/invoices/${id}`);
-      setInvoice(response.data);
-    } catch (error) {
-      console.error("Error fetching invoice:", error);
-      setError("Failed to fetch invoice details. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-//   const handleDeleteClick = () => {
-//     setShowDeleteConfirm(true);
-//   };
 
   const handleDeleteConfirm = async () => {
     if (!invoice) return;
@@ -107,14 +103,14 @@ const InvoiceDetailPage = () => {
       <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 mb-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
-            {/* <button
+            <button
               onClick={handleBackClick}
               className="p-3 hover:bg-gray-100 rounded-full transition-colors duration-200 group"
             >
               <svg className="w-6 h-6 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-            </button> */}
+            </button>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Invoice#
@@ -124,18 +120,8 @@ const InvoiceDetailPage = () => {
               </p>
             </div>
           </div>
-          {/* <button
-            onClick={handleDeleteClick}
-            className="px-6 py-3 bg-red-600 text-black rounded-xl hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 font-semibold"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-            </svg>
-            <span>Delete</span>
-          </button> */}
         </div>
       </div>
-
 
       {/* Invoice Summary Card */}
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 mb-8">
@@ -181,7 +167,6 @@ const InvoiceDetailPage = () => {
           </div>
         </div>
       </div>
-
 
       {/* Invoice Items Card */}
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
