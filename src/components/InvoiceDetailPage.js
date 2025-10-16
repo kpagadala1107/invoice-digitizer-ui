@@ -32,9 +32,9 @@ const InvoiceDetailPage = () => {
     }
   };
 
-  const handleDeleteClick = () => {
-    setShowDeleteConfirm(true);
-  };
+//   const handleDeleteClick = () => {
+//     setShowDeleteConfirm(true);
+//   };
 
   const handleDeleteConfirm = async () => {
     if (!invoice) return;
