@@ -3,10 +3,7 @@ import { useLocation } from 'react-router-dom';
 import ErrorDisplay from './ErrorDisplay';
 import FileUpload from './FileUpload';
 import DisplayDocFields from './DisplayDocFields';
-import InvoiceTable from './InvoiceTable';
-import ModelSelector from './ModelSelector';
 import { useInvoices } from '../hooks/useInvoices';
-import { formatDate, formatCurrency } from '../utils/formatters';
 
 const HomePage = () => {
   const location = useLocation();
@@ -14,12 +11,9 @@ const HomePage = () => {
   const [uploading, setUploading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [selectedModel, setSelectedModel] = useState('Select model type');
-  const [isModelSelectorOpen, setIsModelSelectorOpen] = useState(false);
   const [uploadResponse, setUploadResponse] = useState(null);
 
-  const { invoices, loading, error, uploadInvoice } = useInvoices();
-
+  const { error, uploadInvoice } = useInvoices();
 
   // Handle success message from navigation state
   useEffect(() => {
@@ -61,7 +55,7 @@ const HomePage = () => {
 
     setUploading(true);
     try {
-      const response = await uploadInvoice(file, selectedModel);
+      const response = await uploadInvoice(file);
       setUploadResponse(response);
       setFile(null);
 
@@ -101,37 +95,21 @@ const HomePage = () => {
       )}
 
       <ErrorDisplay error={error} />
-{/* 
-      <ModelSelector
-        selectedModel={selectedModel}
-        onModelChange={setSelectedModel}
-        onOpenChange={setIsModelSelectorOpen}
-        className="mb-8"
-      /> */}
 
-      <div className={`transition-all duration-300 ${isModelSelectorOpen ? 'opacity-30 pointer-events-none' : 'opacity-100'}`}>
-        <FileUpload
-          file={file}
-          dragActive={dragActive}
-          uploading={uploading}
-          onFileChange={handleFileChange}
-          onDrag={handleDrag}
-          onDrop={handleDrop}
-          onUpload={handleUpload}
-        />
+      <FileUpload
+        file={file}
+        dragActive={dragActive}
+        uploading={uploading}
+        onFileChange={handleFileChange}
+        onDrag={handleDrag}
+        onDrop={handleDrop}
+        onUpload={handleUpload}
+      />
 
-        <DisplayDocFields 
-          data={uploadResponse} 
-          loading={uploading} 
-        />
-
-        {/* <InvoiceTable
-          invoices={invoices}
-          loading={loading}
-          formatDate={formatDate}
-          formatCurrency={formatCurrency}
-        /> */}
-      </div>
+      <DisplayDocFields 
+        data={uploadResponse} 
+        loading={uploading} 
+      />
     </main>
   );
 };
