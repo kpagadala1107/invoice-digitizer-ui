@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const API_BASE_URL = "https://invoice-digitizer-service-production.up.railway.app/api";
+// const API_BASE_URL = "http://localhost:8081/api";
 
 export const useInvoices = () => {
   const [invoices, setInvoices] = useState([]);
@@ -26,12 +27,13 @@ export const useInvoices = () => {
     }
   };
 
-  const uploadInvoice = async (file) => {
+  const uploadInvoice = async (file, model = 'prebuilt-invoice') => {
     if (!file) return null;
     
     try {
       const formData = new FormData();
       formData.append("file", file);
+      formData.append("model", model);
       const response = await axios.post(`${API_BASE_URL}/invoices/upload`, formData);
       
       console.log("Upload Response:", response.data);

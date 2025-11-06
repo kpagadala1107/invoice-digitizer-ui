@@ -4,6 +4,7 @@ import axios from 'axios';
 import { formatDate, formatCurrency, calculateItemTotal } from '../utils/formatters';
 
 const API_BASE_URL = "https://invoice-digitizer-service-production.up.railway.app/api";
+// const API_BASE_URL = "http://localhost:8081/api";
 
 const InvoiceDetailPage = () => {
   const { id } = useParams();
