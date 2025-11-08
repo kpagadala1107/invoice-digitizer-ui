@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import ErrorDisplay from './ErrorDisplay';
 import FileUpload from './FileUpload';
 import DisplayDocFields from './DisplayDocFields';
+import FilePreview from './FilePreview';
 import { useInvoices } from '../hooks/useInvoices';
 
 const HomePage = () => {
@@ -12,6 +13,7 @@ const HomePage = () => {
   const [dragActive, setDragActive] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
   const [uploadResponse, setUploadResponse] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
 
   const { error, uploadInvoice } = useInvoices();
 
@@ -57,6 +59,7 @@ const HomePage = () => {
     try {
       const response = await uploadInvoice(file);
       setUploadResponse(response);
+      setUploadedFile(file); // Store the uploaded file for preview
       setFile(null);
 
       // Reset file input
@@ -106,10 +109,20 @@ const HomePage = () => {
         onUpload={handleUpload}
       />
 
-      <DisplayDocFields 
-        data={uploadResponse} 
-        loading={uploading} 
-      />
+      {/* Document Fields Section */}
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Extracted Document Fields</h2>
+        <DisplayDocFields
+          data={uploadResponse}
+          loading={uploading}
+        />
+      </div>
+
+      {/* File Preview Section */}
+      <div className="mt-16">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Document Preview</h2>
+        <FilePreview file={uploadedFile} />
+      </div>
     </main>
   );
 };
