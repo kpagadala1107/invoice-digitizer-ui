@@ -111,10 +111,11 @@ const HomePage = () => {
         onUpload={handleUpload}
       />
 
-       {/* Document Fields and Preview Section - Side by Side */}
-      <div className="mt-8 flex flex-col xl:flex-row xl:space-x-8 space-y-8 xl:space-y-0">
+
+      {/* Document Fields and Preview Section - Side by Side */}
+      <div className="mt-8 flex flex-col xl:flex-row xl:space-x-8 space-y-8 xl:space-y-0 w-full">
         {/* Document Fields Section - Fixed 50% width */}
-        <div className="xl:w-1/2 flex flex-col">
+        <div className="xl:w-1/2 w-full flex flex-col" style={{ minWidth: '0', maxWidth: '50%' }}>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-900">Extracted Document Fields</h2>
             <div className="flex items-center space-x-2">
@@ -138,18 +139,23 @@ const HomePage = () => {
             </div>
           </div>
           <div 
-            className="overflow-x-auto overflow-y-auto max-h-96"
-            style={{ transform: `scale(${jsonZoom})`, transformOrigin: 'top left' }}
+            className="overflow-x-auto overflow-y-auto max-h-96 border border-gray-200 rounded-lg flex-1"
+            style={{ 
+              transform: `scale(${jsonZoom})`, 
+              transformOrigin: 'top left'
+            }}
           >
-            <DisplayDocFields
-              data={uploadResponse}
-              loading={uploading}
-            />
+            <div style={{ minWidth: 'max-content' }}>
+              <DisplayDocFields
+                data={uploadResponse}
+                loading={uploading}
+              />
+            </div>
           </div>
         </div>
 
-        {/* File Preview Section - Remaining 50% width */}
-        <div className="xl:w-1/2 flex flex-col">
+        {/* File Preview Section - Fixed 50% width */}
+        <div className="xl:w-1/2 w-full flex flex-col" style={{ minWidth: '0', maxWidth: '50%' }}>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-900">Document Preview</h2>
             <div className="flex items-center space-x-2">
@@ -173,8 +179,11 @@ const HomePage = () => {
             </div>
           </div>
           <div 
-            className="overflow-auto max-h-96"
-            style={{ transform: `scale(${previewZoom})`, transformOrigin: 'top left' }}
+            className="overflow-auto max-h-96 border border-gray-200 rounded-lg flex-1"
+            style={{ 
+              transform: `scale(${previewZoom})`, 
+              transformOrigin: 'top left'
+            }}
           >
             <FilePreview file={uploadedFile} />
           </div>

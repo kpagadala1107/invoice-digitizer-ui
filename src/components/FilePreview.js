@@ -58,8 +58,8 @@ const FilePreview = ({ file, uploading }) => {
         </div>
       </div>
 
-      {/* Preview Area */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-b-2xl" style={{ height: '500px' }}>
+      {/* Preview Area - Increased height */}
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-b-2xl" style={{ height: '800px' }}>
         {isImage && (
           <div className="w-full h-full overflow-hidden rounded-b-2xl">
             <img
@@ -78,7 +78,7 @@ const FilePreview = ({ file, uploading }) => {
               className="w-full h-full border-0 rounded-b-2xl"
               title="PDF Preview"
               type="application/pdf"
-              style={{ minHeight: '500px' }}
+              style={{ minHeight: '800px', height: '100%' }}
             />
           </div>
         )}
