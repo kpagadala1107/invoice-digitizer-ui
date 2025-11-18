@@ -11,7 +11,7 @@ const FileUpload = ({
 }) => {
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Upload New Invoice</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Upload New Document</h2>
       
       <div className="space-y-6">
         {/* File Upload Zone */}
@@ -57,7 +57,7 @@ const FileUpload = ({
                 </div>
                 <div>
                   <p className="text-lg font-medium text-gray-700">
-                    Drop your invoice here, or <span className="text-blue-600">browse</span>
+                    Drop your document here, or <span className="text-blue-600">browse</span>
                   </p>
                   <p className="text-sm text-gray-500">Supports PDF, PNG, JPG (max 10MB)</p>
                 </div>

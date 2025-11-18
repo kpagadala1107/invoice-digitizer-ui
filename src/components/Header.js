@@ -17,9 +17,9 @@ const Header = () => {
             onClick={handleLogoClick}
           >
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Invoice Digitizer
+              DocDigitizer
             </h1>
-            <p className="text-gray-600 mt-2">Upload and manage your invoices digitally</p>
+            <p className="text-gray-600 mt-2">Upload and manage your documents digitally</p>
           </div>
           <div className="hidden md:flex items-center space-x-4">
             <div className="bg-blue-100 p-3 rounded-full">
