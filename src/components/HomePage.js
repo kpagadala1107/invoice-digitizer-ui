@@ -31,8 +31,13 @@ const HomePage = () => {
     }
   }, [location.state]);
 
-  const handleFileChange = (e) => {
+ const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+    // Hide previous results when new file is selected
+    if (uploadResponse) {
+      setUploadResponse(null);
+      setUploadedFile(null);
+    }
   };
 
   const handleDrag = (e) => {
@@ -51,6 +56,11 @@ const HomePage = () => {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       setFile(e.dataTransfer.files[0]);
+      // Hide previous results when new file is dropped
+      if (uploadResponse) {
+        setUploadResponse(null);
+        setUploadedFile(null);
+      }
     }
   };
 
@@ -111,83 +121,100 @@ const HomePage = () => {
         onUpload={handleUpload}
       />
 
+      {/* Document Fields and Preview Section - Only show after upload response */}
+      <div className={`transition-all duration-700 ease-in-out ${
+        uploadResponse 
+          ? 'opacity-100 translate-y-0 max-h-screen' 
+          : 'opacity-0 translate-y-8 max-h-0 overflow-hidden'
+      }`}>
+        {uploadResponse && (
+          <div className="mt-8 flex flex-col xl:flex-row xl:space-x-8 space-y-8 xl:space-y-0 w-full">
+            {/* Document Fields Section - Fixed 50% width */}
+            <div className={`xl:w-1/2 w-full flex flex-col transition-all duration-500 delay-200 ease-out ${
+              uploadResponse 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-4'
+            }`} 
+            style={{ minWidth: '0', maxWidth: '50%' }}>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold text-gray-900">Extracted Document Fields</h2>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => setJsonZoom(prev => Math.max(0.5, prev - 0.1))}
+                    className="px-2 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200"
+                    disabled={uploading}
+                  >
+                    -
+                  </button>
+                  <span className="text-sm text-gray-600 min-w-[60px] text-center">
+                    {Math.round(jsonZoom * 100)}%
+                  </span>
+                  <button
+                    onClick={() => setJsonZoom(prev => Math.min(2, prev + 0.1))}
+                    className="px-2 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200"
+                    disabled={uploading}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div 
+                className="overflow-x-auto overflow-y-auto max-h-96 border border-gray-200 rounded-lg flex-1 transition-all duration-300"
+                style={{ 
+                  transform: `scale(${jsonZoom})`, 
+                  transformOrigin: 'top left'
+                }}
+              >
+                <div style={{ minWidth: 'max-content' }}>
+                  <DisplayDocFields
+                    data={uploadResponse}
+                    loading={uploading}
+                  />
+                </div>
+              </div>
+            </div>
 
-      {/* Document Fields and Preview Section - Side by Side */}
-      <div className="mt-8 flex flex-col xl:flex-row xl:space-x-8 space-y-8 xl:space-y-0 w-full">
-        {/* Document Fields Section - Fixed 50% width */}
-        <div className="xl:w-1/2 w-full flex flex-col" style={{ minWidth: '0', maxWidth: '50%' }}>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-gray-900">Extracted Document Fields</h2>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setJsonZoom(prev => Math.max(0.5, prev - 0.1))}
-                className="px-2 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded"
-                disabled={uploading}
+            {/* File Preview Section - Fixed 50% width */}
+            <div className={`xl:w-1/2 w-full flex flex-col transition-all duration-500 delay-400 ease-out ${
+              uploadResponse 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-4'
+            }`} 
+            style={{ minWidth: '0', maxWidth: '50%' }}>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold text-gray-900">Document Preview</h2>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => setPreviewZoom(prev => Math.max(0.5, prev - 0.1))}
+                    className="px-2 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200"
+                    disabled={!uploadedFile}
+                  >
+                    -
+                  </button>
+                  <span className="text-sm text-gray-600 min-w-[60px] text-center">
+                    {Math.round(previewZoom * 100)}%
+                  </span>
+                  <button
+                    onClick={() => setPreviewZoom(prev => Math.min(2, prev + 0.1))}
+                    className="px-2 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200"
+                    disabled={!uploadedFile}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div 
+                className="overflow-auto max-h-96 border border-gray-200 rounded-lg flex-1 transition-all duration-300"
+                style={{ 
+                  transform: `scale(${previewZoom})`, 
+                  transformOrigin: 'top left'
+                }}
               >
-                -
-              </button>
-              <span className="text-sm text-gray-600 min-w-[60px] text-center">
-                {Math.round(jsonZoom * 100)}%
-              </span>
-              <button
-                onClick={() => setJsonZoom(prev => Math.min(2, prev + 0.1))}
-                className="px-2 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded"
-                disabled={uploading}
-              >
-                +
-              </button>
+                <FilePreview file={uploadedFile} />
+              </div>
             </div>
           </div>
-          <div 
-            className="overflow-x-auto overflow-y-auto max-h-96 border border-gray-200 rounded-lg flex-1"
-            style={{ 
-              transform: `scale(${jsonZoom})`, 
-              transformOrigin: 'top left'
-            }}
-          >
-            <div style={{ minWidth: 'max-content' }}>
-              <DisplayDocFields
-                data={uploadResponse}
-                loading={uploading}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* File Preview Section - Fixed 50% width */}
-        <div className="xl:w-1/2 w-full flex flex-col" style={{ minWidth: '0', maxWidth: '50%' }}>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-gray-900">Document Preview</h2>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setPreviewZoom(prev => Math.max(0.5, prev - 0.1))}
-                className="px-2 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded"
-                disabled={!uploadedFile}
-              >
-                -
-              </button>
-              <span className="text-sm text-gray-600 min-w-[60px] text-center">
-                {Math.round(previewZoom * 100)}%
-              </span>
-              <button
-                onClick={() => setPreviewZoom(prev => Math.min(2, prev + 0.1))}
-                className="px-2 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded"
-                disabled={!uploadedFile}
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div 
-            className="overflow-auto max-h-96 border border-gray-200 rounded-lg flex-1"
-            style={{ 
-              transform: `scale(${previewZoom})`, 
-              transformOrigin: 'top left'
-            }}
-          >
-            <FilePreview file={uploadedFile} />
-          </div>
-        </div>
+        )}
       </div>
     </main>
   );
