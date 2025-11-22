@@ -6,6 +6,7 @@ import './App.css';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
 import InvoiceDetailPage from './components/InvoiceDetailPage';
+import ChatBotPage from './pages/ChatBotPage';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/invoice/:id" element={<InvoiceDetailPage />} />
+          <Route path="/chatbot" element={<ChatBotPage />} />
         </Routes>
       </div>
     </Router>
