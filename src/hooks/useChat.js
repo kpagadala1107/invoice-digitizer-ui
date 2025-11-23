@@ -8,9 +8,9 @@ export const useChat = () => {
   const [agentInfo, setAgentInfo] = useState(null);
   const [tools, setTools] = useState([]);
   const [connectionStatus, setConnectionStatus] = useState('connecting');
-  const [context, setContext] = useState(null);
+  // const [context, setContext] = useState(null);
   const messagesEndRef = useRef(null);
-  const [lastDocumentJson, setLastDocumentJson] = useState(null);
+  // const [lastDocumentJson, setLastDocumentJson] = useState(null);
   const [contextMap, setContextMap] = useState({ lastDocumentJson: null, sessionMessages: [] });
 
 
@@ -85,9 +85,9 @@ export const useChat = () => {
         const response = result.data.response || result.data.message || 'No response received';
         addMessage('agent', response, 'text', result.data);
 
-        if (result.data.context) {
-          setContext(result.data.context);
-        }
+        // if (result.data.context) {
+        //   setContext(result.data.context);
+        // }
       } else {
         addMessage('agent', `Error: ${result.error}`, 'error');
       }
@@ -108,7 +108,7 @@ export const useChat = () => {
       const result = await agentApi.processDocument(file, instruction);
 
       if (result.success) {
-        setLastDocumentJson(result.data.response);
+        // setLastDocumentJson(result.data.response);
                setContextMap(prev => ({
           ...prev,
           lastDocumentJson: parsedResponse
