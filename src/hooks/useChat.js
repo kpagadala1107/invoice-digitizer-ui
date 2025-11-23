@@ -14,51 +14,7 @@ export const useChat = () => {
   const [contextMap, setContextMap] = useState({ lastDocumentJson: null, sessionMessages: [] });
 
 
-
-  // Initialize chat
-  useEffect(() => {
-    initializeChat();
-  }, []);
-
-  // Auto scroll to bottom when messages change
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const initializeChat = async () => {
-    setConnectionStatus('connecting');
-    
-    // Fetch agent info and tools
-    const [infoResult, toolsResult] = await Promise.all([
-      agentApi.getAgentInfo(),
-      agentApi.getTools(),
-    ]);
-
-    if (infoResult.success) {
-      setAgentInfo(infoResult.data);
-      setConnectionStatus('connected');
-      
-      // Add welcome message
-      addMessage(
-        'agent',
-        `Hello! I'm Doc Digitizer Agent. I can help you extract, validate, and convert document data. What can I do for you today?`,
-        'welcome'
-      );
-    } else {
-      setConnectionStatus('disconnected');
-      addMessage(
-        'agent',
-        'Unable to connect to the agent. Please check if the backend server is running at http://localhost:8081',
-        'error'
-      );
-    }
-
-    if (toolsResult.success) {
-      setTools(toolsResult.data);
-    }
-  };
-
-  const addMessage = useCallback((sender, content, type = 'text', metadata = {}) => {
+ const addMessage = useCallback((sender, content, type = 'text', metadata = {}) => {
     const message = {
       id: Date.now() + Math.random(),
       sender,
@@ -76,7 +32,46 @@ export const useChat = () => {
     return message;
   }, []);
 
+   const initializeChat = useCallback(async () => {
+    setConnectionStatus('connecting');
+    const [infoResult, toolsResult] = await Promise.all([
+      agentApi.getAgentInfo(),
+      agentApi.getTools(),
+    ]);
 
+    if (infoResult.success) {
+      setAgentInfo(infoResult.data);
+      setConnectionStatus('connected');
+      addMessage(
+        'agent',
+        `Hello! I'm Doc Digitizer Agent. I can help you extract, validate, and convert document data. What can I do for you today?`,
+        'welcome'
+      );
+    } else {
+      setConnectionStatus('disconnected');
+      addMessage(
+        'agent',
+        'Unable to connect to the agent. Please check if the backend server is running at http://localhost:8081',
+        'error'
+      );
+    }
+
+    if (toolsResult.success) {
+      setTools(toolsResult.data);
+    }
+  }, [addMessage]);
+
+  // Auto scroll to bottom when messages change
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // Initialize chat
+  useEffect(() => {
+    initializeChat();
+  }, [initializeChat]);
+
+ 
   const sendMessage = async (input) => {
     if (!input.trim()) return;
     addMessage('user', input);
@@ -184,7 +179,6 @@ export const useChat = () => {
 
 const clearChat = () => {
     setMessages([]);
-    setContext(null);
     setContextMap({ lastDocumentJson: null, sessionMessages: [] });
     addMessage(
       'agent',
