@@ -51,7 +51,7 @@ export const useChat = () => {
       setConnectionStatus('disconnected');
       addMessage(
         'agent',
-        'Unable to connect to the agent. Please check if the backend server is running at http://localhost:8081',
+        'Unable to connect to the agent. Please check if the backend server is running and reachable.',
         'error'
       );
     }

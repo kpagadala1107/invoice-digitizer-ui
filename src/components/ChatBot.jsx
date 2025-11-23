@@ -123,7 +123,8 @@ const ChatBot = () => {
                 <label>API Endpoint:</label>
                 <input
                   type="text"
-                  value="http://localhost:8081/api/agent"
+                  // value="http://localhost:8081/api/agent"
+                  value="https://invoice-digitizer-service-production.up.railway.app/api/agent"
                   readOnly
                   className="endpoint-input"
                 />

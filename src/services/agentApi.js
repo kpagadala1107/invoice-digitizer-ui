@@ -1,7 +1,9 @@
 // API Service Layer for Doc Digitizer Agent
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_AGENT_API_URL || 'http://localhost:8081/api/agent';
+// const API_BASE_URL = process.env.REACT_APP_AGENT_API_URL || 'http://localhost:8081/api/agent';
+
+const API_BASE_URL = "https://invoice-digitizer-service-production.up.railway.app/api/agent";
 
 // Create axios instance with default config
 const apiClient = axios.create({
