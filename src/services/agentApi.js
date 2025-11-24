@@ -8,7 +8,7 @@ const API_BASE_URL = "https://invoice-digitizer-service-production.up.railway.ap
 // Create axios instance with default config
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 30000,
+  timeout: 60000,
   headers: {
     'Content-Type': 'application/json',
   },

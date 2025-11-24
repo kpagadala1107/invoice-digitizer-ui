@@ -174,7 +174,7 @@ Or click the "🤖 AI Agent" button in the header.
 - Axios-based HTTP client
 - Request/response interceptors
 - Error handling and retry logic
-- Timeout configuration (30s)
+- Timeout configuration (60s)
 - FormData support for file uploads
 
 ## 🧪 Testing
