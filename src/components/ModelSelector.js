@@ -151,16 +151,11 @@ const ModelSelector = ({ selectedModel, onModelChange, onOpenChange, className =
           
           {/* Dropdown Arrow */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-            <svg
-              className={`w-5 h-5 transition-all duration-300 ${
-                isOpen ? 'rotate-180 text-blue-500' : selectedModel ? 'text-green-500' : 'text-gray-400'
-              }`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+            <img
+              src={isOpen ? '/icons/document-blue.svg' : selectedModel ? '/icons/document-green.svg' : '/icons/document-gray.svg'}
+              alt="select"
+              className={`w-5 h-5 transition-all duration-300 ${isOpen ? 'rotate-180' : ''}`}
+            />
           </div>
         </div>
 
@@ -169,9 +164,7 @@ const ModelSelector = ({ selectedModel, onModelChange, onOpenChange, className =
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 border border-green-200">
             <div className="flex items-start space-x-3">
               <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <img src="/icons/document-white.svg" alt="selected" className="w-4 h-4" />
               </div>
               <div>
                 <p className="font-medium text-gray-800 mb-1">{selectedModelData.name}</p>
@@ -204,9 +197,11 @@ const ModelSelector = ({ selectedModel, onModelChange, onOpenChange, className =
                         ? 'bg-gradient-to-r from-blue-500 to-purple-500' 
                         : 'bg-gray-200'
                     }`}>
-                      <svg className={`w-3 h-3 ${index === focusedIndex ? 'text-white' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
+                      <img
+                        src={index === focusedIndex ? '/icons/document-white.svg' : '/icons/document-gray.svg'}
+                        alt="document"
+                        className="w-3 h-3"
+                      />
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-gray-900 mb-1 text-sm">
@@ -222,9 +217,7 @@ const ModelSelector = ({ selectedModel, onModelChange, onOpenChange, className =
             ) : (
               <div className="px-4 py-6 text-gray-500 text-center">
                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
+                  <img src="/icons/document-gray.svg" alt="no results" className="w-6 h-6" />
                 </div>
                 <p className="text-sm font-medium">No models found</p>
                 <p className="text-xs text-gray-400 mt-1">

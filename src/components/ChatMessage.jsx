@@ -78,7 +78,7 @@ const ChatMessage = ({ message }) => {
   return (
     <div className={`chat-message ${isAgent ? 'agent' : 'user'} ${isError ? 'error' : ''}`}>
       <div className="message-avatar">
-        {isAgent ? '🤖' : '👤'}
+        <img src="/icons/document-white.svg" alt="document" width="18" height="18" />
       </div>
       
       <div className="message-bubble">

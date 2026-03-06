@@ -46,9 +46,7 @@ const FileUpload = ({
             {file ? (
               <>
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                  <img src="/icons/document-green.svg" alt="document" className="w-8 h-8" />
                 </div>
                 <div>
                   <p className="text-lg font-medium text-green-700">{file.name}</p>
@@ -58,9 +56,7 @@ const FileUpload = ({
             ) : (
               <>
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                  </svg>
+                  <img src="/icons/document-blue.svg" alt="document" className="w-8 h-8" />
                 </div>
                 <div>
                   <p className="text-lg font-medium text-gray-700">

@@ -91,9 +91,7 @@ const HomePage = () => {
       {successMessage && (
         <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
           <div className="flex">
-            <svg className="h-5 w-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <img src="/icons/document-green.svg" alt="success" className="h-5 w-5" />
             <div className="ml-3">
               <p className="text-sm text-green-700">{successMessage}</p>
             </div>
@@ -101,9 +99,7 @@ const HomePage = () => {
               onClick={() => setSuccessMessage(null)}
               className="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-600 p-1.5 hover:bg-green-100"
             >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <img src="/icons/document-gray.svg" alt="close" className="w-3 h-3" />
             </button>
           </div>
         </div>

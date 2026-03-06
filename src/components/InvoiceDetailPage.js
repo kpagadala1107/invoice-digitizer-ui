@@ -81,9 +81,7 @@ const InvoiceDetailPage = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-2xl shadow-xl p-12 text-center border border-gray-100">
           <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg className="w-12 h-12 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <img src="/icons/document-red.svg" alt="error" className="w-12 h-12" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Invoice Not Found</h2>
           <p className="text-gray-600 mb-8 text-lg">{error || "The requested invoice could not be found."}</p>
@@ -108,9 +106,7 @@ const InvoiceDetailPage = () => {
               onClick={handleBackClick}
               className="p-3 hover:bg-gray-100 rounded-full transition-colors duration-200 group"
             >
-              <svg className="w-6 h-6 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
+              <img src="/icons/document-gray.svg" alt="back" className="w-6 h-6" />
             </button>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -252,9 +248,7 @@ const InvoiceDetailPage = () => {
           ) : (
             <div className="text-center py-16">
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+                <img src="/icons/document-gray.svg" alt="document" className="w-12 h-12" />
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-2">No items found</h3>
               <p className="text-gray-500 text-lg">This invoice doesn't contain any itemized details.</p>
@@ -270,9 +264,7 @@ const InvoiceDetailPage = () => {
             <div className="p-8">
               <div className="flex items-center mb-6">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                  <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                  </svg>
+                  <img src="/icons/document-red.svg" alt="warning" className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">Delete Invoice</h3>
               </div>

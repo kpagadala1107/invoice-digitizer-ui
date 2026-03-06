@@ -1,34 +1,36 @@
 /* Agent Info Component */
 .agent-info-container {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
   overflow: hidden;
-  margin-top: 5px;
-  transition: all 0.3s ease;
+  margin-top: 8px;
+  transition: all 0.25s ease;
 }
 
 .agent-info-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
+  padding: 9px 14px;
   cursor: pointer;
   user-select: none;
+  transition: background 0.2s;
 }
 
 .agent-info-header:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .agent-status {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
+  gap: 7px;
+  font-size: 12.5px;
 }
 
 .status-icon {
-  font-size: 12px;
+  font-size: 11px;
   animation: pulse 2s infinite;
 }
 
@@ -37,48 +39,50 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.4;
   }
 }
 
 .status-text {
   font-weight: 500;
+  letter-spacing: 0.1px;
 }
 
 .expand-toggle {
   background: none;
   border: none;
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   padding: 4px;
-  transition: transform 0.3s;
+  transition: transform 0.25s, color 0.2s;
 }
 
 .agent-info-header:hover .expand-toggle {
-  transform: scale(1.1);
+  color: white;
 }
 
 /* Agent Info Content */
 .agent-info-content {
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.1);
-  animation: slideDown 0.3s ease-out;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  animation: fadeSlideIn 0.25s ease-out;
 }
 
-@keyframes slideDown {
+@keyframes fadeSlideIn {
   from {
     opacity: 0;
-    max-height: 0;
+    transform: translateY(-4px);
   }
   to {
     opacity: 1;
-    max-height: 500px;
+    transform: translateY(0);
   }
 }
 
 .info-section {
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .info-section:last-child {
@@ -86,28 +90,30 @@
 }
 
 .info-section h4 {
-  margin: 0 0 10px 0;
-  font-size: 14px;
+  margin: 0 0 9px 0;
+  font-size: 11px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 5px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 6px;
 }
 
 .info-item {
   display: flex;
   justify-content: space-between;
-  margin: 8px 0;
+  margin: 7px 0;
   font-size: 12px;
 }
 
 .info-label {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 500;
 }
 
 .info-value {
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 400;
   text-align: right;
   max-width: 60%;
@@ -118,25 +124,29 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .tool-item {
   display: flex;
   gap: 10px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-  margin-bottom: 8px;
-  transition: all 0.2s;
+  padding: 8px 10px;
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-radius: 10px;
+  transition: all 0.18s;
 }
 
 .tool-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.2);
+  transform: translateX(3px);
 }
 
 .tool-icon {
-  font-size: 16px;
+  font-size: 15px;
   flex-shrink: 0;
 }
 
@@ -145,15 +155,15 @@
 }
 
 .tool-name {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 500;
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 2px;
 }
 
 .tool-description {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.5);
   line-height: 1.4;
 }
 
@@ -167,8 +177,18 @@
 .capabilities-list li {
   font-size: 12px;
   padding: 6px 0;
-  color: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.capabilities-list li::before {
+  content: '›';
+  color: #93c5fd;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .capabilities-list li:last-child {
@@ -182,7 +202,7 @@
   }
 
   .info-section h4 {
-    font-size: 13px;
+    font-size: 10px;
   }
 
   .info-item {

@@ -34,9 +34,7 @@ const Header = () => {
               <span className="font-semibold text-xl text-white">AI Agent</span>
             </button>
             <div className="bg-blue-100 p-3 rounded-full">
-              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+              <img src="/icons/document-blue.svg" alt="document" className="w-8 h-8" />
             </div>
           </div>
         </div>

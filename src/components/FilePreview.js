@@ -7,9 +7,7 @@ const FilePreview = ({ file, uploading }) => {
         <div className="flex items-center justify-center h-64">
           <div className="text-center space-y-4">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+              <img src="/icons/document-blue.svg" alt="document" className="w-8 h-8" />
             </div>
             <div>
               <p className="text-lg font-medium text-gray-700">No file uploaded yet</p>
@@ -27,9 +25,7 @@ const FilePreview = ({ file, uploading }) => {
         <div className="flex items-center justify-center h-64">
           <div className="text-center space-y-4">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-              <svg className="w-8 h-8 text-blue-600 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
+              <img src="/icons/document-blue.svg" alt="document" className="w-8 h-8 animate-spin" />
             </div>
             <div>
               <p className="text-lg font-medium text-gray-700">Processing file...</p>
@@ -87,9 +83,7 @@ const FilePreview = ({ file, uploading }) => {
           <div className="w-full h-full flex items-center justify-center">
             <div className="text-center space-y-4">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-                <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+                <img src="/icons/document-gray.svg" alt="document" className="w-8 h-8" />
               </div>
               <div>
                 <p className="text-lg font-medium text-gray-700">File uploaded</p>

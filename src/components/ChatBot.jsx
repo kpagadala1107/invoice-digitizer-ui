@@ -60,7 +60,9 @@ const ChatBot = () => {
         {/* Header */}
         <div className="chatbot-header">
           <div className="header-left">
-            <div className="agent-avatar">🤖</div>
+            <div className="agent-avatar">
+              <img src="/icons/document-white.svg" alt="document" width="22" height="22" />
+            </div>
             <div className="header-info">
               <h2>Doc Digitizer Agent</h2>
               <AgentInfo
@@ -143,7 +145,7 @@ const ChatBot = () => {
         <div className="messages-container">
           {messages.length === 0 && (
             <div className="empty-state">
-              <div className="empty-icon">💬</div>
+              <div className="empty-icon"><img src="/icons/document-white.svg" alt="document" width="64" height="64" /></div>
               <h3>Welcome to Doc Digitizer</h3>
               <p>Start a conversation or upload a document to begin</p>
             </div>
@@ -155,7 +157,9 @@ const ChatBot = () => {
 
           {loading && (
             <div className="chat-message agent loading">
-              <div className="message-avatar">🤖</div>
+              <div className="message-avatar">
+                <img src="/icons/document-white.svg" alt="document" width="18" height="18" />
+              </div>
               <div className="message-bubble">
                 <div className="typing-indicator">
                   <span></span>
